@@ -61,7 +61,35 @@ app.post("/users",upload.single("uimage"), async (req,res)=>{
     } catch (error) {
         console.log(error)
     }
+});
+
+//now we are going to make the gets
+app.get("/travelers",async(req,res)=>{
+    
+    try {
+        const data = await pool.query(
+        "SELECT * FROM travelers"
+    )
+    res.json(data)
+    } catch (error) {
+       console.log(error) 
+    }
 })
+
+app.get("/users", async(req,res)=>{
+     try {
+        const body = await pool.query(
+            "SELECT * FROM users;"
+        );
+        res.json(body)
+        
+     } catch (error) {
+        console.log(error)
+     }
+});
+
+
+
 app.listen(5000,()=>{
     console.log("checkers")
 })
